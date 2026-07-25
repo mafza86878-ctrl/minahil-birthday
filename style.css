@@ -1,0 +1,346 @@
+/* ============================================
+   Design tokens
+   ============================================ */
+:root {
+  --bg-deep: #0e1a14;
+  --bg-panel: #142a1f;
+  --gold: #c9a24b;
+  --gold-soft: #e3c98a;
+  --blush: #e3b8b0;
+  --text-light: #f4efe4;
+  --text-muted: #a9a294;
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'Jost', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: radial-gradient(ellipse at top, #16291f 0%, var(--bg-deep) 60%);
+  color: var(--text-light);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ============================================
+   Ambient floating petals
+   ============================================ */
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.petals::before,
+.petals::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50% 0 50% 50%;
+  background: var(--blush);
+  opacity: 0.35;
+  top: -5%;
+  animation: drift 18s linear infinite;
+}
+
+.petals::before { left: 12%; animation-delay: -3s; }
+.petals::after { left: 78%; animation-delay: -9s; animation-duration: 22s; }
+
+@keyframes drift {
+  0%   { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.4; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(110vh) translateX(60px) rotate(220deg); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petals::before, .petals::after { animation: none; display: none; }
+}
+
+/* ============================================
+   Seal / envelope screen
+   ============================================ */
+.seal-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #17301f 0%, var(--bg-deep) 75%);
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+.seal-screen.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope {
+  text-align: center;
+  padding: 2rem;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.envelope-name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--gold-soft);
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
+}
+
+.seal {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: linear-gradient(160deg, #2a1f14, #1a130c);
+  color: var(--gold-soft);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 1px rgba(201,162,75,0.15), 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.seal:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 1px rgba(201,162,75,0.3), 0 0 30px rgba(201,162,75,0.25);
+}
+
+.seal:active { transform: scale(0.95); }
+
+.seal-inner { display: flex; }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,75,0.25), 0 8px 24px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(201,162,75,0), 0 8px 24px rgba(0,0,0,0.4); }
+}
+
+.seal-hint {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   Letter content
+   ============================================ */
+.letter {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8vh 1.75rem 12vh;
+}
+
+section { margin-bottom: 9vh; }
+
+.hero { text-align: center; padding-top: 4vh; }
+
+.headline {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.75rem, 9vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--text-light);
+}
+
+.headline em {
+  font-style: italic;
+  color: var(--gold-soft);
+}
+
+.flourish {
+  margin-top: 1.5rem;
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 0.5em;
+}
+
+.message-section { max-width: 540px; margin-left: auto; margin-right: auto; }
+
+.message {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.75;
+  color: var(--text-light);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.wishes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.wish { padding: 1.5rem 0.5rem; }
+
+.wish-mark {
+  display: block;
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.wish h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--gold-soft);
+  margin-bottom: 0.5rem;
+}
+
+.wish p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ============================================
+   Candle interaction — signature element
+   ============================================ */
+.candle-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.candle-button {
+  position: relative;
+  width: 26px;
+  height: 90px;
+  background: linear-gradient(180deg, #f4efe4, #d8cfba);
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+.wick {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 10px;
+  background: #4a4234;
+}
+
+.flame {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 14px;
+  height: 22px;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: radial-gradient(circle at 50% 70%, #fff3c4 0%, var(--gold) 45%, #d9640c 100%);
+  opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  filter: blur(0.2px);
+}
+
+.candle-button.lit .flame {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  animation: flicker 1.8s ease-in-out infinite;
+}
+
+.candle-button.lit {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 -10px 30px rgba(201,162,75,0.25);
+}
+
+@keyframes flicker {
+  0%, 100% { transform: translateX(-50%) scale(1) rotate(-1deg); }
+  50% { transform: translateX(-50%) scale(1.08) rotate(1.5deg); }
+}
+
+.candle-caption {
+  margin-top: 1.75rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-align: center;
+  transition: color 0.4s ease;
+}
+
+/* ============================================
+   Closing
+   ============================================ */
+.closing { text-align: center; }
+
+.closing-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.signature {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.03em;
+}
+
+/* ============================================
+   Scroll reveal
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Focus visibility
+   ============================================ */
+button:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 3px;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 520px) {
+  .wishes { grid-template-columns: 1fr; gap: 2rem; }
+  .message { font-size: 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+             }
+  
