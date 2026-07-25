@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Minahil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient floating petals -->
+  <div class="petals" aria-hidden="true"></div>
+
+  <!-- SEAL / ENVELOPE SCREEN -->
+  <section class="seal-screen" id="sealScreen">
+    <div class="envelope">
+      <p class="eyebrow">a small note for</p>
+      <h1 class="envelope-name">Minahil</h1>
+      <button class="seal" id="sealButton" aria-label="Open the letter">
+        <span class="seal-inner">
+          <svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true">
+            <path d="M50 20 C 60 20, 68 28, 68 38 C 68 48, 60 52, 50 60 C 40 52, 32 48, 32 38 C 32 28, 40 20, 50 20 Z" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          </svg>
+        </span>
+      </button>
+      <p class="seal-hint">touch the seal to open</p>
+    </div>
+  </section>
+
+  <!-- MAIN LETTER CONTENT -->
+  <main class="letter" id="letter">
+
+    <section class="hero">
+      <p class="eyebrow reveal">for you, on your day</p>
+      <h1 class="headline reveal">
+        Happy <em>Birthday</em><br>Minahil
+      </h1>
+      <div class="flourish reveal" aria-hidden="true">✦</div>
+    </section>
+
+    <section class="message-section">
+      <p class="message reveal">
+        Har saal aik naya mauqa laata hai — muskurane ka, sapne dekhne ka,
+        aur thodi si aur roshni is duniya mein phailane ka. Aaj ka din
+        khaas hai, kyunke aaj tum paida hui, aur duniya thodi si behtar
+        ho gayi.
+      </p>
+      <p class="message reveal">
+        Umeed hai yeh saal tumhare liye khushiyan, sukoon, aur woh sab
+        kuch le kar aaye jo tum chahti ho. Rehna hamesha aise hi —
+        meherbaan, hansmukh, aur apni zaat mein khaas.
+      </p>
+    </section>
+
+    <section class="wishes">
+      <div class="wish reveal">
+        <span class="wish-mark">✦</span>
+        <h3>Health</h3>
+        <p>A body and mind at peace, every single day.</p>
+      </div>
+      <div class="wish reveal">
+        <span class="wish-mark">✦</span>
+        <h3>Happiness</h3>
+        <p>Small joys, often — and a few big ones too.</p>
+      </div>
+      <div class="wish reveal">
+        <span class="wish-mark">✦</span>
+        <h3>Dreams</h3>
+        <p>The courage to chase them, and the grace to enjoy the chase.</p>
+      </div>
+    </section>
+
+    <section class="candle-section reveal">
+      <button class="candle-button" id="candleButton" aria-label="Light the candle and make a wish">
+        <span class="flame" id="flame"></span>
+        <span class="wick"></span>
+      </button>
+      <p class="candle-caption" id="candleCaption">Tap to light a candle &amp; make a wish</p>
+    </section>
+
+    <section class="closing reveal">
+      <p class="closing-line">With all my love,</p>
+      <p class="signature">Your friend</p>
+    </section>
+
+  </main>
+
+<script src="script.js"></script>
+</body>
+</html>
